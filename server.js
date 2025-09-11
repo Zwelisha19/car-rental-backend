@@ -1,21 +1,77 @@
+// require('dotenv').config();
+// const express = require('express');
+// const connectDB = require('./config/db');
+
+// const app = express();
+// const PORT = process.env.PORT || 5000;
+
+// // Connect DB
+// connectDB();
+
+// // Middleware
+// app.use(express.json());
+
+// // Default route
+// app.get('/', (req, res) => {
+//   res.send('🚗 Car Rental API is running and DB is connected!');
+// });
+
+// app.listen(PORT, () => {
+//   console.log(`🚀 Server running at http://localhost:${PORT}`);
+// });
+
+
+// require('dotenv').config();
+// const express = require('express');
+// const connectDB = require('./config/db');
+
+// // Import routes
+// const adminRoutes = require('./routes/adminRoutes');
+// const adminAuthRoutes = require('./routes/adminAuth'); // for login
+
+// const app = express();
+// const PORT = process.env.PORT || 5000;
+
+// // Connect DB
+// connectDB();
+
+// // Middleware
+// app.use(express.json());
+
+// // Default route
+// app.get('/', (req, res) => {
+//   res.send('🚗 Car Rental API is running and DB is connected!');
+// });
+
+// // Use Routes
+// app.use('/api/admin', adminAuthRoutes);   // e.g. POST /api/admin/login
+// app.use('/api/admin', adminRoutes);       // e.g. GET /api/admin/dashboard
+
+// app.listen(PORT, () => {
+//   console.log(`🚀 Server running at http://localhost:${PORT}`);
+// });
+
+
+
 require('dotenv').config();
 const express = require('express');
 const connectDB = require('./config/db');
 
+const adminAuthRoutes = require('./routes/adminAuth');
+const adminRoutes = require('./routes/adminRoutes');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Connect DB
 connectDB();
-
-// Middleware
 app.use(express.json());
 
-// Default route
 app.get('/', (req, res) => {
-  res.send('🚗 Car Rental API is running and DB is connected!');
+  res.send('🚗 Car Rental API is running!');
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
-});
+// Routes
+app.use('/api/admin', adminAuthRoutes); // POST /api/admin/login
+app.use('/api/admin', adminRoutes);     // GET /api/admin/dashboard
+
+app.listen(PORT, () => console.log(`🚀 Server running at http://localhost:${PORT}`));
