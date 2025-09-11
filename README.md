@@ -64,3 +64,94 @@ Authorization: Bearer <JWT_TOKEN>
 * JWT tokens are issued upon login and must be included in the `Authorization` header for protected routes.
 * Admin routes are protected using middleware to ensure only admins can access them.
 * Base URL may change depending on your deployment (localhost for local development, domain for production).
+
+
+# User API – Car Rental System
+
+This document describes the **User API endpoints** for authentication and user-related actions.
+
+---
+
+## 📌 Base URL
+```
+http://localhost:5000/api/users
+```
+
+---
+
+## 🔑 Authentication Endpoints
+
+### 1. Register a new user
+**Endpoint:**  
+```
+POST /api/users/register
+```
+
+**Description:**  
+Registers a new user with name, email, password, phone number, and driver license.
+
+**Request body (JSON):**
+```json
+{
+  "name": "John Doe",
+  "email": "johndoe@example.com",
+  "password": "P@ssword123",
+  "phoneNumber": "+1234567890",
+  "driverLicense": "DL1234567"
+}
+```
+
+**Response (JSON):**
+```json
+{
+  "token": "<jwt_token>",
+  "user": {
+    "id": "64a123456789",
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "phoneNumber": "+1234567890",
+    "role": "user"
+  }
+}
+```
+
+---
+
+### 2. User login
+**Endpoint:**  
+```
+POST /api/users/login
+```
+
+**Description:**  
+Authenticates an existing user and returns a JWT token.
+
+**Request body (JSON):**
+```json
+{
+  "email": "johndoe@example.com",
+  "password": "P@ssword123"
+}
+```
+
+**Response (JSON):**
+```json
+{
+  "token": "<jwt_token>",
+  "user": {
+    "id": "64a123456789",
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "phoneNumber": "+1234567890",
+    "role": "user"
+  }
+}
+```
+
+---
+
+## 🔒 Protected Routes (for later)
+When you add routes that require authentication (e.g., booking history), include the token in the request header:
+
+```
+Authorization: Bearer <jwt_token>

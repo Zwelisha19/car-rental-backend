@@ -60,6 +60,9 @@ const connectDB = require('./config/db');
 const adminAuthRoutes = require('./routes/adminAuth');
 const adminRoutes = require('./routes/adminRoutes');
 
+const userAuthRoutes = require('./routes/userAuth');
+const userRoutes = require('./routes/userRoutes');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -70,8 +73,12 @@ app.get('/', (req, res) => {
   res.send('🚗 Car Rental API is running!');
 });
 
-// Routes
+// Admin Routes
 app.use('/api/admin', adminAuthRoutes); // POST /api/admin/login
 app.use('/api/admin', adminRoutes);     // GET /api/admin/dashboard
+
+//User Routes
+app.use('/api/users', userAuthRoutes); // POST /api/users/register, POST /api/users/login
+app.use('/api/users', userRoutes);     // GET /api/users/dashboard
 
 app.listen(PORT, () => console.log(`🚀 Server running at http://localhost:${PORT}`));
