@@ -63,6 +63,8 @@ const adminRoutes = require('./routes/adminRoutes');
 const userAuthRoutes = require('./routes/userAuth');
 const userRoutes = require('./routes/userRoutes');
 
+const vehicleRoutes = require('./routes/vehicleRoutes'); // ✅ new
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -80,5 +82,8 @@ app.use('/api/admin', adminRoutes);     // GET /api/admin/dashboard
 //User Routes
 app.use('/api/users', userAuthRoutes); // POST /api/users/register, POST /api/users/login
 app.use('/api/users', userRoutes);     // GET /api/users/dashboard
+
+//vehicle
+app.use('/api/vehicles', vehicleRoutes);  
 
 app.listen(PORT, () => console.log(`🚀 Server running at http://localhost:${PORT}`));
