@@ -1,19 +1,61 @@
+
 const mongoose = require('mongoose');
 
 const vehicleSchema = new mongoose.Schema({
-  make: { type: String, required: true },       // e.g., Toyota
-  model: { type: String, required: true },      // e.g., Camry
-  year: { type: Number, required: true },       // e.g., 2023
-  licensePlate: { type: String, required: true, unique: true },
-  type: { type: String, enum: ['economy', 'SUV', 'luxury', 'minivan'], required: true },
-  pricePerDay: { type: Number, required: true },
-  isAvailable: { type: Boolean, default: true },
-  location: { type: String, required: true },
-    seats: { type: Number, default: 4 },                 // e.g., 5 seats
-  transmission: { type: String, enum: ['manual', 'automatic'], default: 'automatic' },
-  fuelType: { type: String, enum: ['petrol', 'diesel', 'hybrid', 'electric'], default: 'petrol' },
-  imageUrl: { type: String },                          // optional vehicle image
-  description: { type: String },  
-}, { timestamps: true });
+  name: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  type: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  image: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  passengers: {
+    type: Number,
+    required: true
+  },
+  transmission: {
+    type: String,
+    required: true,
+    enum: ['Automatic', 'Manual']
+  },
+  fuel: {
+    type: String,
+    required: true,
+    enum: ['Gasoline', 'Diesel', 'Electric', 'Hybrid']
+  },
+  luggage: {
+    type: Number,
+    required: true
+  },
+  rating: {
+    type: Number,
+    default: 4.5
+  },
+  reviews: {
+    type: Number,
+    default: 0
+  },
+  featured: {
+    type: Boolean,
+    default: false
+  },
+  available: {
+    type: Boolean,
+    default: true
+  }
+}, {
+  timestamps: true
+});
 
 module.exports = mongoose.model('Vehicle', vehicleSchema);
