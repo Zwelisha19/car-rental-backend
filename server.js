@@ -7,7 +7,7 @@ const cors = require('cors');
 const adminAuthRoutes = require('./routes/adminAuth');
 const adminRoutes = require('./routes/adminRoutes');
 
-const userAuthRoutes = require('./routes/userAuth');
+//const userAuthRoutes = require('./routes/userAuth');
 const userRoutes = require('./routes/userRoutes');
 
 const vehicleRoutes = require('./routes/vehicleRoutes'); // ✅ new
@@ -35,7 +35,7 @@ app.use('/api/admin', adminAuthRoutes); // POST /api/admin/login
 app.use('/api/admin', adminRoutes);     // GET /api/admin/dashboard
 
 //User Routes
-app.use('/api/users', userAuthRoutes); // POST /api/users/register, POST /api/users/login
+// app.use('/api/users', userAuthRoutes); // POST /api/users/register, POST /api/users/login
 app.use('/api/users', userRoutes);     // GET /api/users/dashboard
 
 //vehicle Routes
